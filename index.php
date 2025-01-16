@@ -6,7 +6,11 @@ if (isset($_SESSION['usuario'])) {
     if (filter_has_var(INPUT_POST, 'botonenviologout')) {
         session_unset();
         session_destroy();
-        setcookie(session_name(), '', 0, '/');
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+    );
         $loggedIn = false;
     } else {
         $loggedIn = true;
