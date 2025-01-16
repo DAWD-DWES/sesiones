@@ -3,6 +3,7 @@ session_start();
 define('ERROR_MESSAGE', "Credenciales Incorrectas");
 
 if (isset($_SESSION['usuario'])) {
+    $nombre = $_SESSIOn['usuario'];
     if (filter_has_var(INPUT_POST, 'botonenviologout')) {
         session_unset();
         session_destroy();
@@ -30,7 +31,7 @@ if (isset($_SESSION['usuario'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Formulario de lOGIN </title>
+        <title>Formulario de Login</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="stylesheet.css">
     </head>
@@ -62,7 +63,7 @@ if (isset($_SESSION['usuario'])) {
                 <input class="submit" type="submit" 
                        value="logout" name="botonenviologout" > 
             </form>
-            <h1>Hola <?= $_SESSION['usuario']; ?> </h1>
+            <h1>Hola <?= $nombre ?> </h1>
         <?php endif; ?>
     </body>
 </html>
